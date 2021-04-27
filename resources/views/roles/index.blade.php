@@ -14,7 +14,7 @@
         @endif
         <table class="content-element description table-bordered col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-4">
             <tr>
-                <th class="info">Name</th>
+                <th class="info">Nombre</th>
                 <th class="info">Mantenimiento</th>
             </tr>
             @foreach ($roles as $key => $role)
