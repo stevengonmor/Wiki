@@ -50,9 +50,9 @@ class DefaultDataBase extends Seeder {
         $roleAuth->syncPermissions($permissionsEditAuth);
         //Create Admin user with default role
         $user = User::create([
-                    'name' => 'El Crack',
+                    'name' => 'Administrador',
                     'email' => 'admin@gmail.com',
-                    'about_me' => 'Soy un crack xd',
+                    'about_me' => 'Soy el administrador',
                     'password' => bcrypt('123'),
                     'profile_picture' => 'user.jpg'
         ]);
