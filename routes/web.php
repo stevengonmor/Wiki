@@ -21,9 +21,13 @@ use App\Models\Post;
  */
 
 Route::get('/', function () {
-    
-    Route::get('/', function () {
-    return view('welcome');
+    if (Auth::check()) {
+        $posts = Post::latest()->paginate();
+        return view('posts.index', compact('posts'))
+                        ->with('i', (request()->input('page', 1) - 1) * 5);
+    } else {
+        return view('auth.login');
+    }
 });
 
 Auth::routes();
