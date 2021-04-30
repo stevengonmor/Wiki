@@ -20,18 +20,19 @@
             <input type="text" name="tittle" class="light-blue-input info" placeholder="Título"><br><br>
             <textarea class="light-blue-input info" name="text" placeholder="Escribe aqui..."></textarea><br><br>
             <input type="hidden" name="user_id" value="{{ Auth::user()->id }}">
-            {!! Form::select('categories[]', $categories,[], array('class' => 'light-blue-input info')) !!}
-<!--            <div class="col-xs-12 col-sm-12 col-md-12">
+            <div class="col-xs-12 col-sm-12 col-md-12">
                 <div class="form-group">                  
-                    <select class ="dropdown-text light-blue" name="category_id" id="category">
+                    <select class ="dropdown-text light-blue-input" name="category_id" id="category">
                         <option class= "info dark-blue" value="" selected disabled>Selecciona una Categoría</option>
-                        <option class= "info dark-blue" value="1">Desarrollo Web</option>
-                        <option class= "info dark-blue" value="2">Desarrollo de Software</option>
-                        <option class= "info dark-blue" value="3">Ciberseguridad</option>
+                        @foreach($categories as $value)
+                        <option class= "info dark-blue" value="{{$value->id}}">{{$value->name}}</option>
+                        @endforeach
                     </select>
-                </div>
-            </div>-->
-                <button type="submit" class="info submit-button">Submit</button>
+                </div><br>
+            </div>
+            <div class="col-xs-12 col-sm-12 col-md-12 text-center">
+                <button type="submit" class="info submit-button">Crear</button>
+            </div>
         </form>
     </div>
 </div>

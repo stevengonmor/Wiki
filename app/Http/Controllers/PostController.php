@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Support\Facades\Auth;
 use App\Models\Post;
+use App\Models\Category;
 use Illuminate\Http\Request;
 
 class PostController extends Controller {
@@ -37,10 +38,8 @@ class PostController extends Controller {
      * @return \Illuminate\Http\Response
      */
     public function create() {
-        $categories = Role::pluck('name', 'name')->all();
-        return view('users.create', compact('roles'));
-
-        return view('posts.create');
+        $categories = Category::get();
+        return view('posts.create', compact('categories'));
     }
 
     /**
@@ -55,9 +54,7 @@ class PostController extends Controller {
             'text' => 'required',
             'category_id' => 'required',
             'user_id' => 'required',
-            'status_id' => 'required',
         ]);
-
         Post::create($request->all());
 
         return redirect()->route('posts.index')
@@ -96,6 +93,7 @@ class PostController extends Controller {
             'tittle' => 'required',
             'text' => 'required',
         ]);
+
 
         $post->update($request->all());
 

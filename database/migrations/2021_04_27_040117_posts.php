@@ -18,7 +18,7 @@ class posts extends Migration {
             $table->longText('text');
             $table->unsignedBigInteger('category_id');
             $table->unsignedBigInteger('user_id');
-            $table->unsignedBigInteger('status_id');
+            $table->unsignedBigInteger('status_id')->default(1);
             $table->timestamps();
              $table->foreign('category_id')
                     ->references('id')
