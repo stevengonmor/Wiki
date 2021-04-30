@@ -60,19 +60,16 @@ class DefaultDataBase extends Seeder {
         //Insert Default Categories for posts   
         \DB::table('categories')->insert([
             [
-                'name' => 'Desarrollo Web',
+                'name' => 'Informativo',
             ],
             [
-                'name' => 'Desarrollo de Software',
-            ],
-            [
-                'name' => 'Ciberseguridad',
+                'name' => 'Pregunta',
             ]
         ]);
         //Insert Default Statuses for posts
         \DB::table('statuses')->insert([
             [
-                'name' => 'Abierto',
+                    'name' => 'Abierto',
             ],
             [
                 'name' => 'Actualizado',

@@ -37,6 +37,9 @@ class PostController extends Controller {
      * @return \Illuminate\Http\Response
      */
     public function create() {
+        $categories = Role::pluck('name', 'name')->all();
+        return view('users.create', compact('roles'));
+
         return view('posts.create');
     }
 
