@@ -30,6 +30,10 @@
                     </select>
                 </div><br>
             </div>
+            <div>
+                <input class="light-blue-input info" type="file" name="picture">
+            </div><br>
+            <p class="text-white mb-4">La foto es opcional, puedes agregarla más tarde.</p><br>
             <div class="col-xs-12 col-sm-12 col-md-12 text-center">
                 <button type="submit" class="info submit-button">Crear</button>
             </div>

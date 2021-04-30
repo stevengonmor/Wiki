@@ -55,8 +55,27 @@ class PostController extends Controller {
             'category_id' => 'required',
             'user_id' => 'required',
         ]);
-        Post::create($request->all());
 
+        if ($request->hasFile('picture')) {
+            $file = $request->file('picture');
+            $extension = $file->getClientOriginalExtension();
+            $allowed = array('jpg', 'png', 'jpeg', 'gif');
+            if (in_array(strtolower($extension), $allowed)) {
+                if (!empty(Post::latest()->first())) {
+                    $filename = "Post" . Post::latest()->first()->id + 1 . "." . $extension;
+                } else {
+                    $filename = "Post" . 1 . "." . $extension;
+                }
+                $request->file('picture')->storeAs('public', $filename);
+            } else {
+                $filename = "blog.jpg";
+                $msg = "No se guardó la foto, formato inválido.";
+            }
+        } else {
+            $filename = "blog.jpg";
+        }
+        $request['profile_picture'] = $filename;
+        Post::create($request->all());
         return redirect()->route('posts.index')
                         ->with('success', 'Post created successfully.');
     }
@@ -88,13 +107,28 @@ class PostController extends Controller {
      * @param  \App\Post  $post
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Post $post) {
+    public function update(Request $request, Post $id) {
         request()->validate([
             'tittle' => 'required',
             'text' => 'required',
         ]);
 
-
+        if ($request->hasFile('picture')) {
+            $file = $request->file('picture');
+            $extension = $file->getClientOriginalExtension();
+            $allowed = array('jpg', 'png', 'jpeg', 'gif');
+            if (in_array(strtolower($extension), $allowed)) {
+                $filename = "Post" . $id + 1 . "." . $extension;
+                $request->file('picture')->storeAs('public', $filename);
+            } else {
+                $filename = "blog.jpg";
+                $msg = "No se guardó la foto, formato inválido.";
+            }
+        } else {
+            $filename = "blog.jpg";
+        }
+        $request['profile_picture'] = $filename;
+        $post = Post::find($id);
         $post->update($request->all());
 
         return redirect()->route('posts.index')

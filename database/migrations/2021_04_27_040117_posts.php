@@ -19,8 +19,9 @@ class posts extends Migration {
             $table->unsignedBigInteger('category_id');
             $table->unsignedBigInteger('user_id');
             $table->unsignedBigInteger('status_id')->default(1);
+            $table->mediumText('picture')->nullable();
             $table->timestamps();
-             $table->foreign('category_id')
+            $table->foreign('category_id')
                     ->references('id')
                     ->on('categories')
                     ->onDelete('cascade');

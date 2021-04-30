@@ -73,7 +73,11 @@ class UserController extends Controller {
             $extension = $file->getClientOriginalExtension();
             $allowed = array('jpg', 'png', 'jpeg', 'gif');
             if (in_array(strtolower($extension), $allowed)) {
-                $filename = User::latest()->first()->id + 1 . "." . $extension;
+                if (!empty(User::latest()->first())) {
+                    $filename = "User" . User::latest()->first()->id + 1 . "." . $extension;
+                } else {
+                    $filename = "Post" . 1 . "." . $extension;
+                }
                 $request->file('profile_picture')->storeAs('public', $filename);
             } else {
                 $filename = "user.jpg";
@@ -143,7 +147,7 @@ class UserController extends Controller {
             $extension = $file->getClientOriginalExtension();
             $allowed = array('jpg', 'png', 'jpeg', 'gif');
             if (in_array(strtolower($extension), $allowed)) {
-                $filename = $id . "." . $extension;
+                $filename = "User" . $id . "." . $extension;
                 if ($request['old_profile_picture'] != "user.jpg") {
                     $request->file('profile_picture')->storeAs('public', $filename);
                 }
