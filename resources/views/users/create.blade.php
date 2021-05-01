@@ -1,12 +1,15 @@
 @extends('layouts.app')
-
-
 @section('content')
 <div class="container-fluid full-screen row"> 
     <div class="pull-right">
         <a class="info submit-button" href="{{ route('users.index') }}"> Back</a>
     </div>
-    <div class="description content-element col-xs-12 col-sm-12 col-md-12 col-lg-10 col-xl-5">
+    <div class="description content-element col-xs-12 col-sm-12 col-md-12 col-lg-10 col-xl-8">
+         @if(!Auth::user()->hasRole('Administrador'))
+        <div>
+            <p class="info">Este ususario no tiene permisos para crear usuarios</p>
+        </div>
+        @else
         @if (count($errors) > 0)
         <div class="alert alert-danger">
             <strong>Whoops!</strong> There were some problems with your input.<br><br>
@@ -48,6 +51,7 @@
                 <button type="submit" class="info submit-button">Crear</button>
             </div>
         </form>
+        @endif
     </div>
 </div> 
 @endsection

@@ -34,7 +34,7 @@
                             @guest
                             @else
                             <li><a class="info" href="{{ url('/') }}">Inicio</a></li>
-                            <li><a class="info" href="{{ route('posts.index') }}">Mis Publicaciones</a></li>
+                            <li><a class="info" href="{{ route('posts.index') }}">Publicaciones</a></li>
                             <li><a class="info" href="{{ route('users.index') }}">Usuarios</a></li>
                             @if(Auth::user()->hasRole('Administrador'))
                             <li><a class="info" href="{{ route('roles.index') }}">Roles</a></li>
@@ -46,6 +46,7 @@
                                 </a>
                                 <div class="light-blue dropdown-menu" aria-labelledby="navbarDropdown">
                                     <a class="dropdown-item info" href="{{ route('users.show', Auth::user()->id) }}">Perfil</a>
+                                    <a class="dropdown-item info" href="{{ route('user_posts') }}">Mis Publicaciones</a>
                                     <a class="dropdown-item info" href="{{ route('logout') }}"
                                        onclick="event.preventDefault();
                                                    document.getElementById('logout-form').submit();">

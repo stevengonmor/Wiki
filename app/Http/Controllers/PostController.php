@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Support\Facades\Auth;
 use App\Models\Post;
+use App\Models\Type;
 use App\Models\Category;
 use Illuminate\Http\Request;
 
@@ -26,9 +27,33 @@ class PostController extends Controller {
      *
      * @return \Illuminate\Http\Response
      */
-    public function index() {
-        $posts = Post::where('user_id', Auth::user()->id)->paginate();
-        return view('posts.index', compact('posts'))
+    public function index(Request $request) {
+        $msg = '';
+        $one_user = false;
+        $types = Type::get();
+        $categories = Category::get();
+        if (!empty($request['type_id']) && !empty($request['category_id'])) {
+            $posts = Post::where('type_id', $request['type_id'])->where('category_id', $request['category_id'])->paginate();
+            if (!$posts[0]) {
+                $msg = "No hay ninguna publicación que comparte ese tipo y categoría";
+            }
+        } else if (!empty($request['type_id'])) {
+            $posts = Post::where('type_id', $request['type_id'])->paginate();
+            if (!$posts[0]) {
+                $msg = "No hay ninguna publicación de este tipo";
+            }
+        } else if (!empty($request['category_id'])) {
+            $posts = Post::where('category_id', $request['category_id'])->paginate();
+            if (!$posts[0]) {
+                $msg = "No hay ninguna publicación de esta categoría";
+            }
+        } else {
+            $posts = Post::latest()->paginate();
+        }
+        if (!empty($msg)) {
+            $posts = Post::latest()->paginate();
+        }
+        return view('posts.index', compact('posts', 'msg', 'types', 'categories','one_user'))
                         ->with('i', (request()->input('page', 1) - 1) * 5);
     }
 
@@ -38,8 +63,9 @@ class PostController extends Controller {
      * @return \Illuminate\Http\Response
      */
     public function create() {
+        $types = Type::get();
         $categories = Category::get();
-        return view('posts.create', compact('categories'));
+        return view('posts.create', compact('types', 'categories'));
     }
 
     /**
@@ -52,6 +78,7 @@ class PostController extends Controller {
         request()->validate([
             'tittle' => 'required',
             'text' => 'required',
+            'type_id' => 'required',
             'category_id' => 'required',
             'user_id' => 'required',
         ]);
@@ -99,7 +126,9 @@ class PostController extends Controller {
      * @return \Illuminate\Http\Response
      */
     public function edit(Post $post) {
-        return view('posts.edit', compact('post'));
+        $types = Type::get();
+        $categories = Category::get();
+        return view('posts.edit', compact('post', 'types', 'categories'));
     }
 
     /**
@@ -109,10 +138,12 @@ class PostController extends Controller {
      * @param  \App\Post  $post
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Post $id) {
+    public function update(Request $request, Post $post) {
         request()->validate([
             'tittle' => 'required',
             'text' => 'required',
+            'type_id' => 'required',
+            'category_id' => 'required',
         ]);
 
         if ($request->hasFile('picture')) {
@@ -120,20 +151,19 @@ class PostController extends Controller {
             $extension = $file->getClientOriginalExtension();
             $allowed = array('jpg', 'png', 'jpeg', 'gif');
             if (in_array(strtolower($extension), $allowed)) {
-                $filename = "Post" . $id + 1 . "." . $extension;
+                $filename = "Post" . $post->id . "." . $extension;
                 $request->file('picture')->storeAs('public', $filename);
             } else {
-                $filename = "blog.jpg";
+                $filename = $request['old_picture'];
                 $msg = "No se guardó la foto, formato inválido.";
             }
         } else {
-            $filename = "blog.jpg";
+            $filename = $request['old_picture'];
         }
-        $request['profile_picture'] = $filename;
-        $post = Post::find($id);
-        $post->update($request->all());
-
-        return redirect()->route('posts.index')
+        $input = $request->all();
+        $input['picture'] = $filename;
+        $post->update($input);
+        return redirect()->route('posts.show', $post->id)
                         ->with('success', 'Post updated successfully');
     }
 
@@ -148,6 +178,36 @@ class PostController extends Controller {
 
         return redirect()->route('posts.index')
                         ->with('success', 'Post deleted successfully');
+    }
+
+    public function user_posts(Request $request) {
+        $msg = '';
+        $one_user = true;
+        $types = Type::get();
+        $categories = Category::get();
+        if (!empty($request['type_id']) && !empty($request['category_id'])) {
+            $posts = Post::where('type_id', $request['type_id'])->where('category_id', $request['category_id'])->where('user_id', Auth::user()->id)->paginate();
+            if (!$posts[0]) {
+                $msg = "No hay ninguna publicación que comparte ese tipo y categoría";
+            }
+        } else if (!empty($request['type_id'])) {
+            $posts = Post::where('type_id', $request['type_id'])->where('user_id', Auth::user()->id)->paginate();
+            if (!$posts[0]) {
+                $msg = "No hay ninguna publicación de este tipo";
+            }
+        } else if (!empty($request['category_id'])) {
+            $posts = Post::where('category_id', $request['category_id'])->where('user_id', Auth::user()->id)->paginate();
+            if (!$posts[0]) {
+                $msg = "No hay ninguna publicación de esta categoría";
+            }
+        } else {
+            $posts = Post::where('user_id', Auth::user()->id)->paginate();
+        }
+        if (!empty($msg)) {
+            $posts = Post::where('user_id', Auth::user()->id)->paginate();
+        }
+        return view('posts.index', compact('posts', 'msg', 'types', 'categories', 'one_user'))
+                        ->with('i', (request()->input('page', 1) - 1) * 5);
     }
 
 }

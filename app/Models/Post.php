@@ -15,7 +15,19 @@ class Post extends Model {
      * @var array
      */
     protected $fillable = [
-        'tittle', 'text', 'category_id', 'user_id', 'status_id', 'picture'
+        'tittle', 'text', 'type_id', 'category_id', 'user_id', 'status_id', 'picture'
     ];
+
+    public function get_user_profile_picture($id) {
+        $user = User::where('id', $id)->paginate();
+        $profile_picture = $user[0]->profile_picture;
+        return $profile_picture;
+    }
+
+    public function get_user_name($id) {
+        $user = User::where('id', $id)->paginate();
+        $name = $user[0]->name;
+        return $name;
+    }
 
 }

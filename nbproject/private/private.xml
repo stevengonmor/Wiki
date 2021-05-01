@@ -6,48 +6,54 @@
             <file>file:/C:/Users/steve/Documents/Wiki/app/Models/Statuses.php</file>
             <file>file:/C:/Users/steve/Documents/Wiki/resources/views/users/show.blade.php</file>
             <file>file:/C:/Users/steve/Documents/Wiki/app/Http/Controllers/PostController.php</file>
-            <file>file:/C:/Users/steve/Documents/Wiki/app/Models/Post.php</file>
             <file>file:/C:/Users/steve/Documents/Wiki/database/migrations/2021_04_27_035735_categories.php</file>
             <file>file:/C:/Users/steve/Documents/Wiki/storage/app/public/1.jpg</file>
             <file>file:/C:/Users/steve/Documents/Wiki/config/app.php</file>
             <file>file:/C:/Users/steve/Documents/Wiki/resources/views/roles/create.blade.php</file>
-            <file>file:/C:/Users/steve/Documents/Wiki/resources/views/users/edit.blade.php</file>
             <file>file:/C:/Users/steve/Documents/Wiki/resources/views/auth/passwords/email.blade.php</file>
-            <file>file:/C:/Users/steve/Documents/Wiki/database/migrations/2021_04_27_040117_posts.php</file>
-            <file>file:/C:/Users/steve/Documents/Wiki/app/Http/Kernel.php</file>
-            <file>file:/C:/Users/steve/Documents/Wiki/database/seeders/DatabaseSeeder.php</file>
+            <file>file:/C:/Users/steve/Documents/Wiki/storage/app/public/Post6.jpg</file>
             <file>file:/C:/Users/steve/Documents/Wiki/resources/views/users/create.blade.php</file>
-            <file>file:/C:/Users/steve/Documents/Wiki/resources/views/posts/create.blade.php</file>
-            <file>file:/C:/Users/steve/Documents/Wiki/resources/views/posts/show.blade.php</file>
-            <file>file:/C:/Users/steve/Documents/Wiki/public/css/app.css</file>
-            <file>file:/C:/Users/steve/Documents/Wiki/resources/views/roles/index.blade.php</file>
             <file>file:/C:/Users/steve/Documents/Wiki/app/Models/Category.php</file>
             <file>file:/C:/Users/steve/Documents/Wiki/app/Models/Comment.php</file>
-            <file>file:/C:/Users/steve/Documents/Wiki/resources/views/posts/edit.blade.php</file>
-            <file>file:/C:/Users/steve/Documents/Wiki/resources/views/posts/landing.blade.php</file>
+            <file>file:/C:/Users/steve/Documents/Wiki/app/Http/Controllers/Controller.php</file>
             <file>file:/C:/Users/steve/Documents/Wiki/storage/app/public/2.JPG</file>
-            <file>file:/C:/Users/steve/Documents/Wiki/app/Models/User.php</file>
-            <file>file:/C:/Users/steve/Documents/Wiki/database/migrations/2014_10_12_000000_create_users_table.php</file>
             <file>file:/C:/Users/steve/Documents/Wiki/app/Http/Controllers/UserController.php</file>
-            <file>file:/C:/Users/steve/Documents/Wiki/database/migrations/2021_04_27_040157_comments.php</file>
-            <file>file:/C:/Users/steve/Documents/Wiki/database/seeders/DefaultDataBase.php</file>
-            <file>file:/C:/Users/steve/Documents/Wiki/routes/web.php</file>
             <file>file:/C:/Users/steve/Documents/Wiki/storage/app/public/5.jpg</file>
-            <file>file:/C:/Users/steve/Documents/Wiki/storage/app/public/3.JPG</file>
+            <file>file:/C:/Users/steve/Documents/Wiki/storage/app/public/Post8.jpg</file>
             <file>file:/C:/Users/steve/Documents/Wiki/resources/views/auth/passwords/reset.blade.php</file>
-            <file>file:/C:/Users/steve/Documents/Wiki/resources/views/users/index.blade.php</file>
-            <file>file:/C:/Users/steve/Documents/Wiki/app/Http/Controllers/RoleController.php</file>
-            <file>file:/C:/Users/steve/Documents/Wiki/resources/views/layouts/app.blade.php</file>
+            <file>file:/C:/Users/steve/Documents/Wiki/database/migrations/2021_05_01_022900_posts.php</file>
+            <file>file:/C:/Users/steve/Documents/Wiki/storage/app/public/user.jpg</file>
             <file>file:/C:/Users/steve/Documents/Wiki/resources/views/posts/index.blade.php</file>
             <file>file:/C:/Users/steve/Documents/Wiki/resources/views/welcome.blade.php</file>
             <file>file:/C:/Users/steve/Documents/Wiki/resources/views/roles/edit.blade.php</file>
-            <file>file:/C:/Users/steve/Documents/Wiki/resources/views/roles/show.blade.php</file>
+            <file>file:/C:/Users/steve/Documents/Wiki/storage/app/public/User1.JPG</file>
             <file>file:/C:/Users/steve/Documents/Wiki/database/migrations/2021_04_27_035955_statuses.php</file>
-            <file>file:/C:/Users/steve/Documents/Wiki/storage/app/public/4.JPG</file>
             <file>file:/C:/Users/steve/Documents/Wiki/.env</file>
+            <file>file:/C:/Users/steve/Documents/Wiki/resources/views/auth/passwords/confirm.blade.php</file>
+            <file>file:/C:/Users/steve/Documents/Wiki/app/Models/Type.php</file>
+            <file>file:/C:/Users/steve/Documents/Wiki/app/Models/Post.php</file>
+            <file>file:/C:/Users/steve/Documents/Wiki/database/migrations/2021_05_01_022917_comments.php</file>
+            <file>file:/C:/Users/steve/Documents/Wiki/app/Http/Kernel.php</file>
+            <file>file:/C:/Users/steve/Documents/Wiki/database/seeders/DatabaseSeeder.php</file>
+            <file>file:/C:/Users/steve/Documents/Wiki/resources/views/posts/show.blade.php</file>
+            <file>file:/C:/Users/steve/Documents/Wiki/public/css/app.css</file>
+            <file>file:/C:/Users/steve/Documents/Wiki/resources/views/roles/index.blade.php</file>
+            <file>file:/C:/Users/steve/Documents/Wiki/storage/app/public/Post9.JPG</file>
+            <file>file:/C:/Users/steve/Documents/Wiki/storage/app/public/Post10.jpg</file>
+            <file>file:/C:/Users/steve/Documents/Wiki/resources/views/posts/edit.blade.php</file>
+            <file>file:/C:/Users/steve/Documents/Wiki/database/migrations/2021_05_01_022833_types.php</file>
+            <file>file:/C:/Users/steve/Documents/Wiki/app/Models/User.php</file>
+            <file>file:/C:/Users/steve/Documents/Wiki/database/migrations/2014_10_12_000000_create_users_table.php</file>
+            <file>file:/C:/Users/steve/Documents/Wiki/storage/app/public/Post3.jpg</file>
+            <file>file:/C:/Users/steve/Documents/Wiki/database/seeders/DefaultDataBase.php</file>
+            <file>file:/C:/Users/steve/Documents/Wiki/routes/web.php</file>
+            <file>file:/C:/Users/steve/Documents/Wiki/storage/app/public/3.JPG</file>
+            <file>file:/C:/Users/steve/Documents/Wiki/app/Http/Controllers/RoleController.php</file>
+            <file>file:/C:/Users/steve/Documents/Wiki/resources/views/layouts/app.blade.php</file>
+            <file>file:/C:/Users/steve/Documents/Wiki/resources/views/roles/show.blade.php</file>
+            <file>file:/C:/Users/steve/Documents/Wiki/storage/app/public/4.JPG</file>
             <file>file:/C:/Users/steve/Documents/Wiki/resources/views/home.blade.php</file>
             <file>file:/C:/Users/steve/Documents/Wiki/public/img/background.png</file>
-            <file>file:/C:/Users/steve/Documents/Wiki/resources/views/auth/passwords/confirm.blade.php</file>
         </group>
     </open-files>
 </project-private>

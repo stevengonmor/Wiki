@@ -22,7 +22,17 @@
             <input type="hidden" name="user_id" value="{{ Auth::user()->id }}">
             <div class="col-xs-12 col-sm-12 col-md-12">
                 <div class="form-group">                  
-                    <select class ="dropdown-text light-blue-input" name="category_id" id="category">
+                    <select class ="dropdown-text light-blue-input" name="type_id">
+                        <option class= "info dark-blue" value="" selected disabled>Selecciona el tipo</option>
+                        @foreach($types as $value)
+                        <option class= "info dark-blue" value="{{$value->id}}">{{$value->name}}</option>
+                        @endforeach
+                    </select>
+                </div><br>
+            </div>
+            <div class="col-xs-12 col-sm-12 col-md-12">
+                <div class="form-group">                  
+                    <select class ="dropdown-text light-blue-input" name="category_id">
                         <option class= "info dark-blue" value="" selected disabled>Selecciona una Categoría</option>
                         @foreach($categories as $value)
                         <option class= "info dark-blue" value="{{$value->id}}">{{$value->name}}</option>
@@ -33,7 +43,7 @@
             <div>
                 <input class="light-blue-input info" type="file" name="picture">
             </div><br>
-            <p class="text-white mb-4">La foto es opcional, puedes agregarla más tarde.</p><br>
+            <p class="text-white mb-4">La foto es opcional, puedes agregarla más tarde.</p>
             <div class="col-xs-12 col-sm-12 col-md-12 text-center">
                 <button type="submit" class="info submit-button">Crear</button>
             </div>

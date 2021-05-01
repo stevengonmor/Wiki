@@ -73,7 +73,7 @@ class UserController extends Controller {
             $extension = $file->getClientOriginalExtension();
             $allowed = array('jpg', 'png', 'jpeg', 'gif');
             if (in_array(strtolower($extension), $allowed)) {
-                    $filename = "tbd";
+                $filename = "tbd";
             } else {
                 $filename = "user.jpg";
                 $msg = "No se guardó la foto, formato inválido.";
@@ -103,15 +103,13 @@ class UserController extends Controller {
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(Request $request, $id) {
+    public function show(Request $request, User $user) {
         $msg = '';
         if (!empty($request['email'])) {
             $user = User::where('email', $request['email'])->first();
             if (!$user) {
                 $msg = "El usuario no existe";
             }
-        } else {
-            $user = User::find($id);
         }
         return view('users.show', compact('user', 'msg'));
     }
@@ -122,8 +120,7 @@ class UserController extends Controller {
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id) {
-        $user = User::find($id);
+    public function edit(User $user) {
         $roles = Role::pluck('name', 'name')->all();
         $userRole = $user->roles->pluck('name', 'name')->all();
         return view('users.edit', compact('user', 'roles', 'userRole'));
@@ -136,10 +133,10 @@ class UserController extends Controller {
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id) {
+    public function update(Request $request, User $user) {
         $this->validate($request, [
             'name' => 'required',
-            'email' => 'required|email|unique:users,email,' . $id,
+            'email' => 'required|email|unique:users,email,' . $user->id,
             'password' => 'same:confirm-password',
         ]);
 
@@ -148,10 +145,8 @@ class UserController extends Controller {
             $extension = $file->getClientOriginalExtension();
             $allowed = array('jpg', 'png', 'jpeg', 'gif');
             if (in_array(strtolower($extension), $allowed)) {
-                $filename = "User" . $id . "." . $extension;
-                if ($request['old_profile_picture'] != "user.jpg") {
-                    $request->file('profile_picture')->storeAs('public', $filename);
-                }
+                $filename = "User" . $user->id . "." . $extension;
+                $request->file('profile_picture')->storeAs('public', $filename);
             } else {
                 $filename = $request['old_profile_picture'];
                 $msg = "No se guardó la foto, formato inválido.";
@@ -166,10 +161,9 @@ class UserController extends Controller {
         } else {
             $input = Arr::except($input, array('password'));
         }
-        $user = User::find($id);
         $user->update($input);
         if (isset($input['roles'])) {
-            DB::table('model_has_roles')->where('model_id', $id)->delete();
+            DB::table('model_has_roles')->where('model_id', $user->id)->delete();
             $user->assignRole($request->input('roles'));
         }
         return redirect()->route('users.show', $user->id)
@@ -182,12 +176,12 @@ class UserController extends Controller {
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id) {
-        $profile_picture = User::find($id)->profile_picture;
+    public function destroy(User $user) {
+        $profile_picture = $user->profile_picture;
         if ($profile_picture != "user.jpg") {
             unlink(storage_path('app/public/' . $profile_picture));
         }
-        User::find($id)->delete();
+        $user->delete();
         return redirect()->route('users.index')
                         ->with('success', 'User deleted successfully');
     }

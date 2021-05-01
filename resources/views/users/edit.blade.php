@@ -36,7 +36,6 @@
             <div>
                 <i class="info icon-padding fa fa-envelope"></i>
                 <input class="light-blue-input info" type="text" name="email" placeholder="Correo Electronico" value="{{ $user->email }}">
-                <input type="hidden" name="old_email" value="{{ $user->email }}">
             </div><br>
             <div>
                 <i class="info icon-padding fa fa-key"></i>
@@ -63,5 +62,6 @@
             </div>
         </form>
     </div>
+</div>
 
-    @endsection
+@endsection
