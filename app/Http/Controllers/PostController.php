@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\Auth;
 use App\Models\Post;
 use App\Models\Type;
 use App\Models\Category;
+use App\Models\Comment;
 use Illuminate\Http\Request;
 
 class PostController extends Controller {
@@ -53,7 +54,7 @@ class PostController extends Controller {
         if (!empty($msg)) {
             $posts = Post::latest()->paginate();
         }
-        return view('posts.index', compact('posts', 'msg', 'types', 'categories','one_user'))
+        return view('posts.index', compact('posts', 'msg', 'types', 'categories', 'one_user'))
                         ->with('i', (request()->input('page', 1) - 1) * 5);
     }
 
@@ -115,8 +116,14 @@ class PostController extends Controller {
      * @param  \App\Post  $post
      * @return \Illuminate\Http\Response
      */
-    public function show(Post $post) {
-        return view('posts.show', compact('post'));
+    public function show(Request $request, Post $post) {
+        $msg = '';
+        if (!empty($request['text'])) {
+            $input = $request->all();
+            $comment = Comment::create($input);
+        }
+        $comments = Comment::where('post_id', $post->id)->paginate();
+        return view('posts.show', compact('post', 'comments'));
     }
 
     /**
