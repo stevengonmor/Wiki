@@ -61,12 +61,7 @@ class PostController extends Controller {
             $extension = $file->getClientOriginalExtension();
             $allowed = array('jpg', 'png', 'jpeg', 'gif');
             if (in_array(strtolower($extension), $allowed)) {
-                if (!empty(Post::latest()->first())) {
-                    $filename = "Post" . Post::latest()->first()->id + 1 . "." . $extension;
-                } else {
-                    $filename = "Post" . 1 . "." . $extension;
-                }
-                $request->file('picture')->storeAs('public', $filename);
+                $filename = "tbd";
             } else {
                 $filename = "blog.jpg";
                 $msg = "No se guardó la foto, formato inválido.";
@@ -74,8 +69,15 @@ class PostController extends Controller {
         } else {
             $filename = "blog.jpg";
         }
-        $request['profile_picture'] = $filename;
-        Post::create($request->all());
+        $input = $request->all();
+        $input['picture'] = $filename;
+        $post = Post::create($input);
+        if ($filename == "tbd") {
+            $input['picture'] = "Post" . $post->id . "." . $extension;
+            $request->file('picture')->storeAs('public', $input['picture']);
+            $post->update(array('picture' => $input['picture']));
+            $request->file('picture')->storeAs('public', $input['picture']);
+        }
         return redirect()->route('posts.index')
                         ->with('success', 'Post created successfully.');
     }

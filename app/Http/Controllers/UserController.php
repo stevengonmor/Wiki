@@ -73,12 +73,7 @@ class UserController extends Controller {
             $extension = $file->getClientOriginalExtension();
             $allowed = array('jpg', 'png', 'jpeg', 'gif');
             if (in_array(strtolower($extension), $allowed)) {
-                if (!empty(User::latest()->first())) {
-                    $filename = "User" . User::latest()->first()->id + 1 . "." . $extension;
-                } else {
-                    $filename = "Post" . 1 . "." . $extension;
-                }
-                $request->file('profile_picture')->storeAs('public', $filename);
+                    $filename = "tbd";
             } else {
                 $filename = "user.jpg";
                 $msg = "No se guardó la foto, formato inválido.";
@@ -90,6 +85,12 @@ class UserController extends Controller {
         $input['profile_picture'] = $filename;
         $input['password'] = Hash::make($input['password']);
         $user = User::create($input);
+        if ($filename == "tbd") {
+            $input['profile_picture'] = "User" . $user->id . "." . $extension;
+            $request->file('profile_picture')->storeAs('public', $input['profile_picture']);
+            $user->update(array('profile_picture' => $input['profile_picture']));
+            $request->file('profile_picture')->storeAs('public', $input['profile_picture']);
+        }
         $user->assignRole($request->input('roles'));
 
         return redirect()->route('users.index')
