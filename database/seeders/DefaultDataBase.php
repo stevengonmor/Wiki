@@ -57,8 +57,8 @@ class DefaultDataBase extends Seeder {
                     'profile_picture' => 'user.jpg'
         ]);
         $user->assignRole([$roleAdmin->id]);
-        //Insert Default Categories for posts   
-        \DB::table('categories')->insert([
+        //Insert Default Types for posts   
+        \DB::table('types')->insert([
             [
                 'name' => 'Informativo',
             ],
@@ -66,10 +66,22 @@ class DefaultDataBase extends Seeder {
                 'name' => 'Pregunta',
             ]
         ]);
+        //Insert Default Categories for posts   
+        \DB::table('categories')->insert([
+            [
+                'name' => 'Desarrollo Web',
+            ],
+            [
+                'name' => 'Desarrollo de Software',
+            ],
+            [
+                'name' => 'Ciberseguridad',
+            ]
+        ]);
         //Insert Default Statuses for posts
         \DB::table('statuses')->insert([
             [
-                    'name' => 'Abierto',
+                'name' => 'Abierto',
             ],
             [
                 'name' => 'Actualizado',

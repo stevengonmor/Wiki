@@ -16,11 +16,16 @@ class posts extends Migration {
             $table->id();
             $table->string('tittle');
             $table->longText('text');
+            $table->unsignedBigInteger('type_id');
             $table->unsignedBigInteger('category_id');
             $table->unsignedBigInteger('user_id');
             $table->unsignedBigInteger('status_id')->default(1);
             $table->mediumText('picture')->nullable();
             $table->timestamps();
+            $table->foreign('type_id')
+                    ->references('id')
+                    ->on('types')
+                    ->onDelete('cascade');
             $table->foreign('category_id')
                     ->references('id')
                     ->on('categories')
