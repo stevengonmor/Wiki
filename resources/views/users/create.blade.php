@@ -5,7 +5,7 @@
         <a class="info submit-button" href="{{ route('users.index') }}"> Back</a>
     </div>
     <div class="description content-element col-xs-12 col-sm-12 col-md-12 col-lg-10 col-xl-8">
-         @if ($errors->any())
+        @if ($errors->any())
         <div class="content-element">
             <p class="info"> No se pudo crear el usuario. Corriga los siguientes errores:</p><br>
             <ul>

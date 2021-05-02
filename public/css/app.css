@@ -11,9 +11,6 @@ body{
     margin: 0 auto;
     text-align: center;
 }
-#header-left{
-    text-align: left;
-}
 .info {
     font-weight: bold;
     color:white;
