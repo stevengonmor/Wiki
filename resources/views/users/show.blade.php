@@ -55,17 +55,19 @@
                             </div>
                             @if((Auth::user()->hasRole('Administrador')) || ($user->id == Auth::user()->id))
                             <div class="row">
-                                @can('user-edit')
+                                @can('Editar Usuarios')
                                 <div class="col-xs-12 col-sm-12 col-md-6 col-lg-4 col-xl-6">
                                     <a class="btn btn-dark col-xs-12 col-sm-12 col-md-6 col-lg-4 col-xl-6" href="{{ route('users.edit',$user->id) }}">Editar</a> 
                                 </div>
                                 @endcan
                                 @if(Auth::user()->hasRole('Administrador'))
+                                @can('Eliminar Usuarios')
                                 <div class="col-xs-12 col-sm-12 col-md-6 col-lg-4 col-xl-6">
                                     {!! Form::open(['method' => 'DELETE','route' => ['users.destroy', $user->id]]) !!}
                                     {!! Form::submit('Dar de Baja', ['class' => 'btn btn-dark col-xs-12 col-sm-12 col-md-6 col-lg-4 col-xl-6']) !!}
                                     {!! Form::close() !!}
                                 </div>
+                                @endcan
                                 @endif
                             </div>
                             @endif

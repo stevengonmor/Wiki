@@ -17,18 +17,19 @@ class DefaultDataBase extends Seeder {
     public function run() {
         //Create permissions
         $permissions = [
-            'role-list',
-            'role-create',
-            'role-edit',
-            'role-delete',
-            'user-list',
-            'user-create',
-            'user-edit',
-            'user-delete',
-            'post-list',
-            'post-create',
-            'post-edit',
-            'post-delete',
+            'Ver Roles',
+            'Crear Roles',
+            'Editar Roles',
+            'Eliminar Roles',
+            'Ver Historial',
+            'Crear Usuarios',
+            'Eliminar Usuarios',
+            'Ver Usuarios',
+            'Editar Usuarios',
+            'Ver Publicaciones',
+            'Crear Publicaciones',
+            'Editar Publicaciones',
+            'Eliminar Publicaciones',
         ];
         foreach ($permissions as $permission) {
             Permission::create(['name' => $permission]);
@@ -41,8 +42,8 @@ class DefaultDataBase extends Seeder {
         $permissionsAdmin = Permission::pluck('id', 'id')->all();
         $permissionsEditAuth = [];
         $i = 1;
-        $sum = 6;
-        for ($i; $i <= 7; $i++) {
+        $sum = 8;
+        for ($i; $i <= 6; $i++) {
             $permissionsEditAuth[$i] = $sum++;
         }
         $roleAdmin->syncPermissions($permissionsAdmin);

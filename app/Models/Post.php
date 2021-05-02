@@ -24,9 +24,22 @@ class Post extends Model {
         return $profile_picture;
     }
 
-    public function get_user_name($id) {
-        $user = User::where('id', $id)->paginate();
-        $name = $user[0]->name;
+    public function get_id_name($column, $id) {
+        switch ($column) {
+            case 'users':
+                $object = User::where('id', $id)->paginate();
+                break;
+            case 'types':
+                $object = Type::where('id', $id)->paginate();
+                break;
+            case 'categories':
+                $object = Category::where('id', $id)->paginate();
+                break;
+            case 'statuses':
+                $object = Status::where('id', $id)->paginate();
+                break;
+        }
+        $name = $object[0]->name;
         return $name;
     }
 

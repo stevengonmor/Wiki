@@ -8,6 +8,11 @@
             </div>
         </div>
     </div>
+    @if(Auth::user()->hasRole('Autenticado') && Auth::user()->id != $post->user_id)
+    <div class="description">
+            <p class="info">Los usuarios Autenticados solo pueden modificar sus propias publicaciones.</p>
+        </div>
+    @else
     <div class="description content-element col-xs-12 col-sm-12 col-md-12 col-lg-10 col-xl-8">
         @if (count($errors) > 0)
         <div class="alert alert-danger">
@@ -46,7 +51,21 @@
                         @if($value->id == $post->category_id)
                         <option class= "info dark-blue" value="{{$value->id}}" selected>{{$value->name}}</option>
                         @else
+                        <option class= "info dark-blue" value="{{$value->id}}">{{$value->name}}</option>
+                        @endif
+                        @endforeach
+                    </select>
+                </div><br>
+            </div>
+            <div class="col-xs-12 col-sm-12 col-md-12">
+                <div class="form-group">                  
+                    <select class ="dropdown-text light-blue-input" name="status_id">
+                        <option class= "info dark-blue" value="" selected disabled>Selecciona una Categoría</option>
+                        @foreach($statuses as $value)
+                        @if($value->id == $post->status_id)
                         <option class= "info dark-blue" value="{{$value->id}}" selected>{{$value->name}}</option>
+                        @else
+                        <option class= "info dark-blue" value="{{$value->id}}">{{$value->name}}</option>
                         @endif
                         @endforeach
                     </select>
@@ -60,5 +79,6 @@
             </div>
         </form>
     </div> 
+    @endif
 </div>
 @endsection

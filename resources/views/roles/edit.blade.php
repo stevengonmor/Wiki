@@ -5,11 +5,6 @@
         <a class="info submit-button" href="{{ route('roles.index') }}"> Back</a>
     </div>
     <div class="description col-xs-12 col-sm-12 col-md-12 col-lg-10 col-xl-5">
-        @if(!Auth::user()->hasRole('Administrador'))
-        <div class="description">
-            <p class="info">Este ususario no tiene permisos para el mantenimiento de roles</p>
-        </div>
-        @else
         @if (count($errors) > 0)
         <div class="alert alert-danger">
             <strong>Whoops!</strong> There were some problems with your input.<br><br>
@@ -45,7 +40,6 @@
             </div>
         </div>
         {!! Form::close() !!}
-        @endif
     </div>
 </div>
 @endsection

@@ -19,10 +19,10 @@ class UserController extends Controller {
      * @return \Illuminate\Http\Response
      */
     function __construct() {
-        $this->middleware('permission:user-list|user-create|user-edit|user-delete', ['only' => ['index', 'store']]);
-        $this->middleware('permission:user-create', ['only' => ['create', 'store']]);
-        $this->middleware('permission:user-edit', ['only' => ['edit', 'update']]);
-        $this->middleware('permission:user-delete', ['only' => ['destroy']]);
+        $this->middleware('permission:Ver Usuarios', ['only' => ['index','show']]);
+        $this->middleware('permission:Crear Usuarios', ['only' => ['create', 'store']]);
+        $this->middleware('permission:Editar Usuarios', ['only' => ['edit', 'update']]);
+        $this->middleware('permission:Eliminar Usuarios', ['only' => ['destroy']]);
     }
 
     /**
@@ -36,13 +36,12 @@ class UserController extends Controller {
             $users = User::where('email', $request['email'])->paginate();
             if (!$users[0]) {
                 $msg = "El usuario no existe";
-                $users = User::orderBy('id', 'DESC')->paginate();
+                $users = User::all()->sortByDesc("id");
             }
         } else {
-            $users = User::orderBy('id', 'DESC')->paginate();
+            $users = User::all()->sortByDesc("id");
         }
-        return view('users.index', compact('users', 'msg'))
-                        ->with('i', ($request->input('page', 1) - 1) * 5);
+        return view('users.index', compact('users', 'msg'));
     }
 
     /**

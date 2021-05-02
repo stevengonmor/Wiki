@@ -25,8 +25,8 @@ class Comment extends Model {
     }
 
     public function get_user_name($id) {
-        $user = User::where('id', $id)->paginate();
-        $name = $user[0]->name;
+        $user = User::find($id);
+        $name = $user->name;
         return $name;
     }
 

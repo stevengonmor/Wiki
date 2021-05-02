@@ -1,11 +1,11 @@
 <?php
 
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\PostController;
+use App\Http\Controllers\LogController;
 use App\Models\Post;
 use App\Models\Type;
 use App\Models\Category;
@@ -31,9 +31,8 @@ Route::get('/', function () {
         $msg = '';
         $types = Type::get();
         $categories = Category::get();
-        $posts = Post::latest()->paginate();
-        return view('posts.index', compact('posts', 'msg', 'types', 'categories', 'one_user'))
-                        ->with('i', (request()->input('page', 1) - 1) * 5);
+        $posts = Post::all()->sortByDesc("id");
+        return view('posts.index', compact('posts', 'msg', 'types', 'categories', 'one_user'));
     } else {
         return view('auth.login');
     }
@@ -49,5 +48,6 @@ Route::group(['middleware' => ['auth']], function() {
     Route::resource('posts', PostController::class);
 });
 
-Route::match(array('GET', 'POST'),'/MyPosts', [PostController::class, 'user_posts'])->name('user_posts');
+Route::match(array('GET', 'POST'), '/MyPosts', [PostController::class, 'user_posts'])->name('user_posts');
+Route::get('/history', [LogController::class, 'index'])->name('log');
 

@@ -2,11 +2,6 @@
 @section('content')
 <div class="contaimer-fluid full-screen">
     <div class="content-element col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-10">
-        @if(!Auth::user()->hasRole('Administrador'))
-        <div class="description">
-            <p class="info">Este ususario no tiene permisos para el mantenimiento de roles</p>
-        </div>
-        @else
         @if ($message = Session::get('success'))
         <div class="landin-text">
             <p>{{ $message }}</p>
@@ -33,8 +28,6 @@
             </tr>
             @endforeach
         </table>
-        {!! $roles->render() !!}
-        @endif
     </div>
 </div>
 @endsection

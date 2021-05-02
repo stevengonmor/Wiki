@@ -7,7 +7,7 @@
     </div>
     @endif
     <div class="pull-right">
-        @can('post-create')
+        @can('Crear Publicaciones')
         <a class="info submit-button" href="{{ route('posts.create') }}"> Crear Nueva Publicación</a><br>
         @endcan
     </div>
@@ -54,7 +54,18 @@
                     <a href ="{{ route('posts.show', $post->id ) }}" class ="info">{{ $post->tittle }}</a><br><br> 
                     <p class ="blog-text light-blue">{{ substr($post->text, 0, 215) . "..."}}</p><br> 
                     <h4 class = "author-date blog-text"><img alt ="Imagen" src ="/storage/{{ $post->get_user_profile_picture($post->user_id) }}" class="rounded-circle" width="40" height="40">
-                        <a class = "blog-text" href = '{{ route('users.show',$post->user_id) }}'>{{ $post->get_user_name($post->user_id) }}</a>, {{$post->created_at}}</h4><br>
+                        <a class = "blog-text" href = '{{ route('users.show',$post->user_id) }}'>{{ $post->get_id_name('users', $post->user_id) }}</a>, {{$post->created_at}}</h4>
+                    @if((!Auth::user()->hasRole('Autenticado')) || ($post->user_id == Auth::user()->id))
+                    @can('Editar Publicaciones')
+                    <a class="landing-text btn-dark" href="{{ route('posts.edit',$post->id) }}">Editar</a>
+                    @endcan
+                    @can('Eliminar Publicaciones')
+                    {!! Form::open(['method' => 'DELETE','route' => ['posts.destroy', $post->id],'style'=>'display:inline']) !!}
+                    {!! Form::submit('Borrar', ['class' => 'landing-text btn-danger']) !!}
+                    {!! Form::close() !!}
+                    @endcan
+                    @endif
+                    <br><br>
                     @endforeach
                 </div>
             </div>

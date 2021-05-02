@@ -10,6 +10,11 @@
             </div>
         </div>
     </div>
+    @if(!Auth::user()->hasRole('Administrador') && Auth::user()->id != $user->id)
+    <div class="description">
+            <p class="info">Los usuarios Autenticados y Editores solo pueden modificar su propia información.</p>
+        </div>
+    @else
     <div class="description content-element col-xs-12 col-sm-12 col-md-12 col-lg-10 col-xl-5">
         @if (count($errors) > 0)
         <div class="alert alert-danger">
@@ -62,6 +67,7 @@
             </div>
         </form>
     </div>
+    @endif
 </div>
 
 @endsection

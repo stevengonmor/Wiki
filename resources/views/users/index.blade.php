@@ -3,11 +3,11 @@
 <div class="contaimer-fluid full-screen">
 
     <div class="content-element col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-10">
-        @if((Auth::user()->hasRole('Administrador')))
+         @can('Crear Publicaciones')
         <div class="pull-right" >
             <a class="info submit-button" href="{{ route('users.create') }}"> Crear Nuevo Usuario</a>
         </div><br>
-        @endif
+        @endcan
         @if ($message = Session::get('success'))
         <p class="info">{{ $message }}</p>
         @endif
@@ -43,16 +43,19 @@
                 </td>
                 @if((Auth::user()->hasRole('Administrador')))
                 <td class>
+                    @can('Editar Usuarios')
                     <a class="landing-text btn-dark" href="{{ route('users.edit',$user->id) }}">Editar</a>
+                    @endcan
+                    @can('Eliminar Usuarios')
                     {!! Form::open(['method' => 'DELETE','route' => ['users.destroy', $user->id],'style'=>'display:inline']) !!}
                     {!! Form::submit('Borrar', ['class' => 'landing-text btn-danger']) !!}
                     {!! Form::close() !!}
+                    @endcan
                 </td>
                 @endif
             </tr>
             @endforeach
         </table>
     </div>
-    {!! $users->render() !!}
 </div>
 @endsection
