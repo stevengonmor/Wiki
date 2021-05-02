@@ -36,6 +36,7 @@
             <file>file:/C:/Users/steve/Documents/Wiki/app/Http/Kernel.php</file>
             <file>file:/C:/Users/steve/Documents/Wiki/database/seeders/DatabaseSeeder.php</file>
             <file>file:/C:/Users/steve/Documents/Wiki/resources/views/posts/show.blade.php</file>
+            <file>file:/C:/Users/steve/Documents/Wiki/resources/views/posts/create.blade.php</file>
             <file>file:/C:/Users/steve/Documents/Wiki/public/css/app.css</file>
             <file>file:/C:/Users/steve/Documents/Wiki/resources/views/roles/index.blade.php</file>
             <file>file:/C:/Users/steve/Documents/Wiki/storage/app/public/Post9.JPG</file>
@@ -44,10 +45,12 @@
             <file>file:/C:/Users/steve/Documents/Wiki/database/migrations/2021_05_01_022833_types.php</file>
             <file>file:/C:/Users/steve/Documents/Wiki/app/Models/User.php</file>
             <file>file:/C:/Users/steve/Documents/Wiki/database/migrations/2014_10_12_000000_create_users_table.php</file>
+            <file>file:/C:/Users/steve/Documents/Wiki/app/Http/Controllers/HomeController.php</file>
             <file>file:/C:/Users/steve/Documents/Wiki/storage/app/public/Post3.jpg</file>
             <file>file:/C:/Users/steve/Documents/Wiki/database/seeders/DefaultDataBase.php</file>
             <file>file:/C:/Users/steve/Documents/Wiki/routes/web.php</file>
             <file>file:/C:/Users/steve/Documents/Wiki/storage/app/public/3.JPG</file>
+            <file>file:/C:/Users/steve/Documents/Wiki/resources/views/users/index.blade.php</file>
             <file>file:/C:/Users/steve/Documents/Wiki/app/Http/Controllers/RoleController.php</file>
             <file>file:/C:/Users/steve/Documents/Wiki/resources/views/layouts/app.blade.php</file>
             <file>file:/C:/Users/steve/Documents/Wiki/resources/views/roles/show.blade.php</file>

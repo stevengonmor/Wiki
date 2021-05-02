@@ -82,18 +82,13 @@ class PostController extends Controller {
             'type_id' => 'required',
             'category_id' => 'required',
             'user_id' => 'required',
+            'picture' => 'image',
         ]);
 
         if ($request->hasFile('picture')) {
             $file = $request->file('picture');
             $extension = $file->getClientOriginalExtension();
-            $allowed = array('jpg', 'png', 'jpeg', 'gif');
-            if (in_array(strtolower($extension), $allowed)) {
-                $filename = "tbd";
-            } else {
-                $filename = "blog.jpg";
-                $msg = "No se guardó la foto, formato inválido.";
-            }
+            $filename = "tbd";
         } else {
             $filename = "blog.jpg";
         }
@@ -104,10 +99,9 @@ class PostController extends Controller {
             $input['picture'] = "Post" . $post->id . "." . $extension;
             $request->file('picture')->storeAs('public', $input['picture']);
             $post->update(array('picture' => $input['picture']));
-            $request->file('picture')->storeAs('public', $input['picture']);
         }
         return redirect()->route('posts.index')
-                        ->with('success', 'Post created successfully.');
+                        ->with('success', 'Se creo la publicación.');
     }
 
     /**
@@ -151,24 +145,16 @@ class PostController extends Controller {
             'text' => 'required',
             'type_id' => 'required',
             'category_id' => 'required',
+            'picture' => 'image',
         ]);
-
+        $input = $request->all();
         if ($request->hasFile('picture')) {
             $file = $request->file('picture');
             $extension = $file->getClientOriginalExtension();
-            $allowed = array('jpg', 'png', 'jpeg', 'gif');
-            if (in_array(strtolower($extension), $allowed)) {
-                $filename = "Post" . $post->id . "." . $extension;
-                $request->file('picture')->storeAs('public', $filename);
-            } else {
-                $filename = $request['old_picture'];
-                $msg = "No se guardó la foto, formato inválido.";
-            }
-        } else {
-            $filename = $request['old_picture'];
+            $filename = "Post" . $post->id . "." . $extension;
+            $request->file('picture')->storeAs('public', $filename);
+            $input['picture'] = $filename;
         }
-        $input = $request->all();
-        $input['picture'] = $filename;
         $post->update($input);
         return redirect()->route('posts.show', $post->id)
                         ->with('success', 'Post updated successfully');

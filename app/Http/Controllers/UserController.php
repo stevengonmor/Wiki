@@ -66,18 +66,13 @@ class UserController extends Controller {
             'name' => 'required',
             'email' => 'required|email|unique:users,email',
             'password' => 'required|same:confirm-password',
-            'roles' => 'required'
+            'roles' => 'required',
+            'profile_picture' => 'image',
         ]);
         if ($request->hasFile('profile_picture')) {
             $file = $request->file('profile_picture');
             $extension = $file->getClientOriginalExtension();
-            $allowed = array('jpg', 'png', 'jpeg', 'gif');
-            if (in_array(strtolower($extension), $allowed)) {
-                $filename = "tbd";
-            } else {
-                $filename = "user.jpg";
-                $msg = "No se guardó la foto, formato inválido.";
-            }
+            $filename = "tbd";
         } else {
             $filename = "user.jpg";
         }
@@ -89,11 +84,10 @@ class UserController extends Controller {
             $input['profile_picture'] = "User" . $user->id . "." . $extension;
             $request->file('profile_picture')->storeAs('public', $input['profile_picture']);
             $user->update(array('profile_picture' => $input['profile_picture']));
-            $request->file('profile_picture')->storeAs('public', $input['profile_picture']);
         }
         $user->assignRole($request->input('roles'));
 
-        return redirect()->route('users.index')
+        return redirect()->route('users.index', 'msg')
                         ->with('success', 'User created successfully');
     }
 
@@ -138,24 +132,16 @@ class UserController extends Controller {
             'name' => 'required',
             'email' => 'required|email|unique:users,email,' . $user->id,
             'password' => 'same:confirm-password',
+            'profile_picture' => 'image',
         ]);
-
+        $input = $request->all();
         if ($request->hasFile('profile_picture')) {
             $file = $request->file('profile_picture');
             $extension = $file->getClientOriginalExtension();
-            $allowed = array('jpg', 'png', 'jpeg', 'gif');
-            if (in_array(strtolower($extension), $allowed)) {
-                $filename = "User" . $user->id . "." . $extension;
-                $request->file('profile_picture')->storeAs('public', $filename);
-            } else {
-                $filename = $request['old_profile_picture'];
-                $msg = "No se guardó la foto, formato inválido.";
-            }
-        } else {
-            $filename = $request['old_profile_picture'];
+            $filename = "User" . $user->id . "." . $extension;
+            $request->file('profile_picture')->storeAs('public', $filename);
+            $input['profile_picture'] = $filename;
         }
-        $input = $request->all();
-        $input['profile_picture'] = $filename;
         if (!empty($input['password'])) {
             $input['password'] = Hash::make($input['password']);
         } else {

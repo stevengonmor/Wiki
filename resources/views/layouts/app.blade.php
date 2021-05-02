@@ -44,7 +44,7 @@
                                 <a id="navbarDropdown" class="info dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                     {{ Auth::user()->name }} <span class="caret"></span>
                                 </a>
-                                <div class="light-blue dropdown-menu" aria-labelledby="navbarDropdown">
+                                <div class="light-blue dropdown-menu dropdown-menu-dark" aria-labelledby="navbarDropdown">
                                     <a class="dropdown-item info" href="{{ route('users.show', Auth::user()->id) }}">Perfil</a>
                                     <a class="dropdown-item info" href="{{ route('user_posts') }}">Mis Publicaciones</a>
                                     <a class="dropdown-item info" href="{{ route('logout') }}"
