@@ -24,7 +24,11 @@
         <div class ="content-element row">
             <div class="content-element col-x s-12 col-sm-12 col-md-8 col-lg-8 col-xl-8"> 
                 <br><br>
+                @if($post->type_id ==1)
                 <p class="info">Comentarios</p> 
+                @else
+                <p class="info">Respuestas</p> 
+                @endif
                 <div class="description comments-height col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">  
                     @foreach($comments as $comment)
                     <div class="light-blue comment blog-text mt-4 text-justify col-xs-12 col-sm-12 col-md-8 col-lg-12 col-xl-12"> 
@@ -37,17 +41,28 @@
             </div>
             <div class="content-element col-xs-12 col-sm-12 col-md-4 col-lg-4 col-xl-4"> 
                 <br><br>
-                <p class="info">Deja tu Comentario</p>  
+                @if($post->type_id ==2 && $post->status_id == 3)
+                <p class="info">Esta pregunta está concluida, ya no se puede responder.</p>  
+                @else
+                @if($post->type_id ==1)
+                <p class="info">Deja tu comentario</p> 
+                @else
+                <p class="info">Deja tu respuesta</p> 
+                @endif
                 <div class="description col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
-                    <form method="GET" action='{{ route('posts.show', $post->id) }}'>
-                        <p class ="info">Comentario</p>                    
+                    <form method="GET" action='{{ route('posts.show', $post->id) }}'>  
+                         @if($post->type_id ==1)
                         <textarea class= "big-input info light-blue arsh" name="text" placeholder="Comentario"></textarea>
+                        @else
+                        <textarea class= "big-input info light-blue arsh" name="text" placeholder="Respuesta"></textarea>
+                        @endif
                         <input type = "hidden" name = "user_id" value = "{{ Auth::user()->id }}">
                         <input type = "hidden" name = "post_id" value = "{{ $post->id }}">
                         <br> <br> 
                         <input class= "submit-button info" type="submit" value="Enviar">
                     </form> 
                 </div>
+                @endif
             </div>
         </div>
     </div>

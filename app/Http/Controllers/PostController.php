@@ -84,16 +84,14 @@ class PostController extends Controller {
             'user_id' => 'required',
             'picture' => 'image',
         ]);
-
+        $filename = "none";
+        $input = $request->all();
         if ($request->hasFile('picture')) {
             $file = $request->file('picture');
             $extension = $file->getClientOriginalExtension();
             $filename = "tbd";
-        } else {
-            $filename = "post.jpg";
+            $input['picture'] = $filename;
         }
-        $input = $request->all();
-        $input['picture'] = $filename;
         $post = Post::create($input);
         $post_with_status_id = Post::find($post->id);
         if ($filename == "tbd") {
@@ -116,8 +114,8 @@ class PostController extends Controller {
         if (!empty($request['text'])) {
             $input = $request->all();
             $comment = Comment::create($input);
-            if($post->type_id == 2){
-            $post->update(array('status_id' => 2));
+            if ($post->type_id == 2) {
+                $post->update(array('status_id' => 2));
             }
         }
         $comments = Comment::where('post_id', $post->id)->paginate();
