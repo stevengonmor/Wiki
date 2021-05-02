@@ -21,7 +21,7 @@
         <header>
             <div id="header-left">
                 <h1 class="info col-11 col-sm-11 col-md-11 col-lg-11 col-xl-11">
-                    <a href="{{ url('/') }}"> <img class="info col-1 col-sm-1 col-md-1 col-lg-1 col-xl-1" src="/storage/logo.png" alt="Logo"></a>Experiencia Informática</h1>
+                    <a href="{{ route('home') }}"> <img class="info col-1 col-sm-1 col-md-1 col-lg-1 col-xl-1" src="/storage/logo.png" alt="Logo"></a>Experiencia Informática</h1>
             </div>
             <div id="app">
                 <nav class="navbar navbar-expand-lg navbar-dark bg-transparent">
@@ -33,23 +33,24 @@
                         <ul class="navbar-nav">
                             @guest
                             @else
-                            <li><a class="info" href="{{ url('/') }}">Inicio</a></li>
+                            <li><a class="info" href="{{ route('home') }}">Inicio</a></li>
                             <li><a class="info" href="{{ route('posts.index') }}">Publicaciones</a></li>
                             <li><a class="info" href="{{ route('users.index') }}">Usuarios</a></li>
                             @if(Auth::user()->hasRole('Administrador'))
                             <li><a class="info" href="{{ route('roles.index') }}">Roles</a></li>
+                            <li><a class="info" href="{{ route('log') }}">Historial</a></li>
                             @endif
                             <img id= "img-box" class="rounded-circle" alt ="Imagen" src="/storage/{{ Auth::user()->profile_picture }}" width="40" height="40">
                             <li class="dropdown">
                                 <a id="navbarDropdown" class="info dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                     {{ Auth::user()->name }} <span class="caret"></span>
                                 </a>
-                                <div class="light-blue dropdown-menu dropdown-menu-dark" aria-labelledby="navbarDropdown">
+                                <div id = "width-dropdown" class="light-blue dropdown-menu dropdown-menu-dark" aria-labelledby="navbarDropdown">
                                     <a class="dropdown-item info" href="{{ route('users.show', Auth::user()->id) }}">Perfil</a>
                                     <a class="dropdown-item info" href="{{ route('user_posts') }}">Mis Publicaciones</a>
                                     <a class="dropdown-item info" href="{{ route('logout') }}"
                                        onclick="event.preventDefault();
-                                                   document.getElementById('logout-form').submit();">
+                                               document.getElementById('logout-form').submit();">
                                         {{ __('Salir') }}
                                     </a>
                                     <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">

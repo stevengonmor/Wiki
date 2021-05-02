@@ -20,7 +20,7 @@ class CommentObserver {
         if ($post->type_id == 2) {
             $action = ' respondió a la pregunta #';
             if ($post->status_id == 1) {
-                $confirmation = '. Se cambiará el estado a "Actualizado".';
+                $confirmation = '. Se cambiará el estado de la pregunta a "Actualizada".';
             } else {
                 $confirmation = '.';
             }

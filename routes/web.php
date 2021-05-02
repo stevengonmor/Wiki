@@ -27,12 +27,8 @@ use App\Models\Category;
 
 Route::get('/', function () {
     if (Auth::check()) {
-        $one_user = false;
-        $msg = '';
-        $types = Type::get();
-        $categories = Category::get();
-        $posts = Post::all()->sortByDesc("id");
-        return view('posts.index', compact('posts', 'msg', 'types', 'categories', 'one_user'));
+        $posts = Post::latest()->paginate(5);
+        return view('home', compact('posts'));
     } else {
         return view('auth.login');
     }
@@ -48,6 +44,6 @@ Route::group(['middleware' => ['auth']], function() {
     Route::resource('posts', PostController::class);
 });
 
-Route::match(array('GET', 'POST'), '/MyPosts', [PostController::class, 'user_posts'])->name('user_posts');
+Route::match(array('GET', 'POST'), '/myPosts', [PostController::class, 'user_posts'])->name('user_posts');
 Route::get('/history', [LogController::class, 'index'])->name('log');
 

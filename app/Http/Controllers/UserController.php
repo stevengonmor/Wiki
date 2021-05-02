@@ -19,7 +19,7 @@ class UserController extends Controller {
      * @return \Illuminate\Http\Response
      */
     function __construct() {
-        $this->middleware('permission:Ver Usuarios', ['only' => ['index','show']]);
+        $this->middleware('permission:Ver Usuarios', ['only' => ['index', 'show']]);
         $this->middleware('permission:Crear Usuarios', ['only' => ['create', 'store']]);
         $this->middleware('permission:Editar Usuarios', ['only' => ['edit', 'update']]);
         $this->middleware('permission:Eliminar Usuarios', ['only' => ['destroy']]);
@@ -87,7 +87,7 @@ class UserController extends Controller {
         $user->assignRole($request->input('roles'));
 
         return redirect()->route('users.index', 'msg')
-                        ->with('success', 'User created successfully');
+                        ->with('success', 'Se creó el usuario.');
     }
 
     /**

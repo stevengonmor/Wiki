@@ -3,7 +3,7 @@
 <div class="contaimer-fluid full-screen">
 
     <div class="content-element col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-10">
-         @can('Crear Publicaciones')
+        @can('Crear Publicaciones')
         <div class="pull-right" >
             <a class="info submit-button" href="{{ route('users.create') }}"> Crear Nuevo Usuario</a>
         </div><br>

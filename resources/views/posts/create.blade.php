@@ -6,11 +6,11 @@
     </div>
     <div class="description content-element col-xs-12 col-sm-12 col-md-12 col-lg-10 col-xl-8">
         @if ($errors->any())
-        <div class="alert alert-danger">
-            <strong>Whoops!</strong> There were some problems with your input.<br><br>
+        <div class="content-element">
+            <p class="info"> No se pudo crear la publicación. Corriga los siguientes errores:</p><br>
             <ul>
                 @foreach ($errors->all() as $error)
-                <li>{{ $error }}</li>
+                <li class="landing-text">{{ $error }}</li>
                 @endforeach
             </ul>
         </div>

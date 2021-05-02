@@ -171,8 +171,9 @@ class PostController extends Controller {
      * @return \Illuminate\Http\Response
      */
     public function destroy(Post $post) {
-        $picture = $post->_picture;
-        if ($picture != "post.jpg") {
+
+        if ($post->_picture) {
+            $picture = $post->_picture;
             unlink(storage_path('app/public/' . $picture));
         }
         $post->delete();

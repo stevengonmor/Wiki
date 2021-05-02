@@ -27,10 +27,10 @@
                     </div>   
                 </td>
                 <td>
-                    @can('role-edit')
+                    @can('Editar Roles')
                     <a class="landing-text btn-dark" href="{{ route('roles.edit',$role->id) }}">Editar</a>
                     @endcan
-                    @can('role-delete')
+                    @can('Eliminar Roles')
                     {!! Form::open(['method' => 'DELETE','route' => ['roles.destroy', $role->id],'style'=>'display:inline']) !!}
                     {!! Form::submit('Borrar', ['class' => 'landing-text btn-danger']) !!}
                     {!! Form::close() !!}

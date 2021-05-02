@@ -82,13 +82,13 @@ class DefaultDataBase extends Seeder {
         //Insert Default Statuses for posts
         \DB::table('statuses')->insert([
             [
-                'name' => 'Abierto',
+                'name' => 'Abierta',
             ],
             [
-                'name' => 'Actualizado',
+                'name' => 'Actualizada',
             ],
             [
-                'name' => 'Cerrado',
+                'name' => 'Cerrada',
             ]
         ]);
     }

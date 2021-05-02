@@ -39,6 +39,10 @@ body{
     height: 30px;
 }
 
+#width-dropdown{
+    min-width: 300px;     
+}
+
 .tittle{
     color:white;
     font-weight:bold;

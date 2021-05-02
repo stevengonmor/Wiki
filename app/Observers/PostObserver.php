@@ -38,7 +38,7 @@ class PostObserver {
                 'content_id' => $post->id,
                 'content_type' => 'Publicación',
                 'action' => 'Actualizar',
-                'description' => 'El usuario #' . Auth::user()->id . ' actualizó el título del post #' . $post->id . ' de "'
+                'description' => 'El usuario #' . Auth::user()->id . ' actualizó el título de la publicación #' . $post->id . ' de "'
                 . $old_post->tittle . '" a "' . $post->tittle . '".'
             ]);
         }
@@ -48,7 +48,7 @@ class PostObserver {
                 'content_id' => $post->id,
                 'content_type' => 'Publicación',
                 'action' => 'Actualizar',
-                'description' => 'El usuario #' . Auth::user()->id . ' actualizó el texto del post #' . $post->id . ' de "'
+                'description' => 'El usuario #' . Auth::user()->id . ' actualizó el texto de la publicación #' . $post->id . ' de "'
                 . $old_post->text . '" a "' . $post->text . '".'
             ]);
         }
@@ -58,7 +58,7 @@ class PostObserver {
                 'content_id' => $post->id,
                 'content_type' => 'Publicación',
                 'action' => 'Actualizar',
-                'description' => 'El usuario #' . Auth::user()->id . ' actualizó el tipo de post #' . $post->id . ' de "'
+                'description' => 'El usuario #' . Auth::user()->id . ' actualizó el tipo de la publicación#' . $post->id . ' de "'
                 . $old_post->get_id_name('types', $old_post->type_id) . '" a "' . $post->get_id_name('types', $post->type_id) . '".'
             ]);
         }
@@ -68,7 +68,7 @@ class PostObserver {
                 'content_id' => $post->id,
                 'content_type' => 'Publicación',
                 'action' => 'Actualizar',
-                'description' => 'El usuario #' . Auth::user()->id . ' actualizó la categoría del post #' . $post->id . ' de "'
+                'description' => 'El usuario #' . Auth::user()->id . ' actualizó la categoría de la publicación #' . $post->id . ' de "'
                 . $old_post->get_id_name('categories', $old_post->category_id) . '" a "' . $post->get_id_name('categories', $post->category_id) . '".'
             ]);
         }
@@ -78,7 +78,7 @@ class PostObserver {
                 'content_id' => $post->id,
                 'content_type' => 'Publicación',
                 'action' => 'Actualizar',
-                'description' => 'El usuario #' . Auth::user()->id . ' actualizó el estado del post #' . $post->id . ' de "'
+                'description' => 'El usuario #' . Auth::user()->id . ' actualizó el estado de la publicación #' . $post->id . ' de "'
                 . $old_post->get_id_name('statuses', $old_post->status_id) . '" a "' . $post->get_id_name('statuses', $post->status_id) . '".'
             ]);
         }

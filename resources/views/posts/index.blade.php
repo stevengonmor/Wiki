@@ -1,17 +1,15 @@
 @extends('layouts.app')
 @section('content')
 <div class="container-fluid full-screen row"> 
-    @if ($message = Session::get('success'))
-    <div class="alert alert-success">
-        <p>{{ $message }}</p>
-    </div>
-    @endif
     <div class="pull-right">
         @can('Crear Publicaciones')
         <a class="info submit-button" href="{{ route('posts.create') }}"> Crear Nueva Publicación</a><br>
         @endcan
     </div>
     <div class="content-element col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-10">
+        @if ($message = Session::get('success'))
+        <p class="info">{{ $message }}</p>
+        @endif
         <p class="info" >Filtrar por Tipo/Categoría</p><br>
         @if($one_user)
         <form action="{{ route('user_posts') }}" method="POST">
@@ -49,7 +47,8 @@
             <p class ="info mb-4 ">{{ $msg }}</p>
             @endif
             <div class="content-element row col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">   
-                <div class="description all-height">
+                @if(isset($posts[0]))
+                <div class="description">
                     @foreach($posts as $post)
                     <a href ="{{ route('posts.show', $post->id ) }}" class ="info">{{ $post->tittle }}</a><br><br> 
                     <p class ="blog-text light-blue">{{ substr($post->text, 0, 215) . "..."}}</p><br> 
@@ -68,6 +67,9 @@
                     <br><br>
                     @endforeach
                 </div>
+                @else
+                <p class="info">Aún no hay publicaciones.</p>
+                @endif
             </div>
     </div>
 </div>
