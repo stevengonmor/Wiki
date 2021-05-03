@@ -11,6 +11,9 @@ body{
     margin: 0 auto;
     text-align: center;
 }
+#header-left{
+    text-align: left;
+}
 .info {
     font-weight: bold;
     color:white;
@@ -31,15 +34,9 @@ body{
 .navbar-nav a:hover {
     color: #2B7A78;
 }
-.icons-navbar{
-    width: 30px;
-    height: 30px;
-}
-
 #width-dropdown{
     min-width: 300px;     
 }
-
 .tittle{
     color:white;
     font-weight:bold;
@@ -57,23 +54,11 @@ body{
     border-radius: 8px;
     box-shadow: 10px 8px 8px black;
 }
-.last-five-height{
-    min-height:785px;
-}  
 .description{
     padding: 15px 32px;
     background-color: #17252a;
     text-align: center;
     margin: auto;
-    border-radius: 8px;
-    box-shadow: 10px 8px 8px black;
-}
-#create-button{
-    text-align: center;
-    display: block;
-    margin: auto;
-    padding: 15px 32px;
-    background-color: #2B7A78;
     border-radius: 8px;
     box-shadow: 10px 8px 8px black;
 }
@@ -99,11 +84,6 @@ body{
     text-decoration: none;
     text-shadow: 10px 8px 8px black;
 }
-select {
-    border: 1px solid #fff;
-    background-color: transparent;
-    border: none;
-}
 .dropdown-text{
     color: #17252a;
     text-shadow: none;
@@ -116,9 +96,6 @@ select {
     border-radius: 8px;
     box-shadow: 10px 8px 8px black;
 }
-.all-height{
-    min-height:375px;
-}  
 .blog-text {
     color:white;
     font-size: 25px;
@@ -128,6 +105,9 @@ select {
 .author-date{
     text-align: right;
 }
+.type-category-status{
+    text-align: left;
+}
 #img-box{
     max-width: 100%; 
     max-height: 100%;
@@ -136,17 +116,8 @@ select {
     border-radius: 8px;
     box-shadow: 10px 8px 8px black;
 }
-.comments-height{
-    min-height: 495px;
-}  
-.align-left{
-    text-align: left;
-}
 .comment h4{
     display: inline
-}
-.wrapper input[type="text"] {
-    position: relative; 
 }
 .light-blue-input{
     padding: 15px 32px;
@@ -161,52 +132,23 @@ select {
     padding-right: 20px;
     margin:auto;
 }
-
 .profile-pic-back {
     display:block;
     margin: auto;
     word-wrap: break-word;
 }
-
 h6 {
     font-size: 18px
 }
-
 .card-block {
     padding: 1.25rem
 }
-
-.b-b-default {
-    border-bottom: 1px solid #e0e0e0
-}
-
 .text-muted {
     color: #919aa3 !important
 }
 .f-w-600 {
     font-weight: 600
 }
-
-.ud-button{
-    text-align: center;
-    display: block;
-    margin: auto;
-    background-color: #2B7A78;
-    border-radius: 8px;
-    box-shadow: 10px 8px 8px black;
-}
-
 .padd-bottom {
     padding-bottom: 1;
-}
-
-#login-dropdown{
-    width: 530px;
-}
-
-.margin-top-space{
-    margin-top: 10px;
-}
-.in-line{
-    display:inline;
 }

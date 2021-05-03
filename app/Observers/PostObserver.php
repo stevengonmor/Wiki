@@ -43,13 +43,18 @@ class PostObserver {
             ]);
         }
         if ($old_post->text != $post->text) {
+            if ($post->status_id == 1) {
+                $confirmation = '". Se cambiará el estado de la pregunta a "Actualizada".';
+            } else {
+                $confirmation = '".';
+            }
             Log::create([
                 'user_id' => Auth::user()->id,
                 'content_id' => $post->id,
                 'content_type' => 'Publicación',
                 'action' => 'Actualizar',
                 'description' => 'El usuario #' . Auth::user()->id . ' actualizó el texto de la publicación #' . $post->id . ' de "'
-                . $old_post->text . '" a "' . $post->text . '".'
+                . $old_post->text . '" a "' . $post->text . $confirmation
             ]);
         }
         if ($old_post->type_id != $post->type_id) {

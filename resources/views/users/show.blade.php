@@ -8,7 +8,7 @@
             </div><br>
         </div>
     </div>
-    <div class="info description all-height justify-content-center col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-8">
+    <div class="info description justify-content-center col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-8">
         @if($user)
         <form method="GET" action='{{ route('users.show', $user->id) }}'>
             @else 

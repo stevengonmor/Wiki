@@ -29,6 +29,7 @@
             @method('PUT')
             <input type="text" name="tittle" class="light-blue-input info" placeholder="Título" value="{{ $post->tittle }}"><br><br>
             <textarea class="light-blue-input info" name="text" placeholder="Escribe aqui...">{{ $post->text }}</textarea><br><br>
+            <input class="light-blue-input info" type = "hidden" name="old_text" value = "{{ $post->text }}">
             <div class="col-xs-12 col-sm-12 col-md-12">
                 <div class="form-group">                  
                     <select class ="dropdown-text light-blue-input" name="type_id">

@@ -37,22 +37,19 @@ class PostController extends Controller {
         if (!empty($request['type_id']) && !empty($request['category_id'])) {
             $posts = Post::where('type_id', $request['type_id'])->where('category_id', $request['category_id'])->orderBy('id', 'desc')->paginate();
             if (!$posts[0]) {
-                $msg = "No hay ninguna publicación que comparte ese tipo y categoría";
+                $msg = "No hay ninguna publicación que comparte ese tipo y categoría.";
             }
         } else if (!empty($request['type_id'])) {
             $posts = Post::where('type_id', $request['type_id'])->orderBy('id', 'desc')->paginate();
             if (!$posts[0]) {
-                $msg = "No hay ninguna publicación de este tipo";
+                $msg = "No hay ninguna publicación de este tipo.";
             }
         } else if (!empty($request['category_id'])) {
             $posts = Post::where('category_id', $request['category_id'])->orderBy('id', 'desc')->paginate();
             if (!$posts[0]) {
-                $msg = "No hay ninguna publicación de esta categoría";
+                $msg = "No hay ninguna publicación de esta categoría.";
             }
         } else {
-            $posts = Post::all()->sortByDesc("id");
-        }
-        if (!empty($msg)) {
             $posts = Post::all()->sortByDesc("id");
         }
         return view('posts.index', compact('posts', 'msg', 'types', 'categories', 'one_user'));
@@ -160,6 +157,10 @@ class PostController extends Controller {
             $input['picture'] = $filename;
         }
         $post->update($input);
+        if ($input['old_text'] != $input['text']) {
+            $post->update(array('status_id' => 2));
+        }
+
         return redirect()->route('posts.show', $post->id)
                         ->with('success', 'Post updated successfully');
     }
@@ -190,22 +191,19 @@ class PostController extends Controller {
         if (!empty($request['type_id']) && !empty($request['category_id'])) {
             $posts = Post::where('type_id', $request['type_id'])->where('category_id', $request['category_id'])->where('user_id', Auth::user()->id)->orderBy('id', 'desc')->paginate();
             if (!$posts[0]) {
-                $msg = "No hay ninguna publicación que comparte ese tipo y categoría";
+                $msg = "No tienes ninguna publicación que comparte ese tipo y categoría.";
             }
         } else if (!empty($request['type_id'])) {
             $posts = Post::where('type_id', $request['type_id'])->where('user_id', Auth::user()->id)->orderBy('id', 'desc')->paginate();
             if (!$posts[0]) {
-                $msg = "No hay ninguna publicación de este tipo";
+                $msg = "No tienes ninguna publicación de este tipo.";
             }
         } else if (!empty($request['category_id'])) {
             $posts = Post::where('category_id', $request['category_id'])->where('user_id', Auth::user()->id)->orderBy('id', 'desc')->paginate();
             if (!$posts[0]) {
-                $msg = "No hay ninguna publicación de esta categoría";
+                $msg = "No tienes ninguna publicación de esta categoría.";
             }
         } else {
-            $posts = Post::where('user_id', Auth::user()->id)->orderBy('id', 'desc')->paginate();
-        }
-        if (!empty($msg)) {
             $posts = Post::where('user_id', Auth::user()->id)->orderBy('id', 'desc')->paginate();
         }
         return view('posts.index', compact('posts', 'msg', 'types', 'categories', 'one_user'));

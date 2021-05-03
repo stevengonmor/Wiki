@@ -61,7 +61,7 @@ class DefaultDataBase extends Seeder {
         //Insert Default Types for posts   
         \DB::table('types')->insert([
             [
-                'name' => 'Informativo',
+                'name' => 'Informativa',
             ],
             [
                 'name' => 'Pregunta',

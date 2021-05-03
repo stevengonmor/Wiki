@@ -45,7 +45,7 @@
             </form>
             @if(!empty($msg)) 
             <p class ="info mb-4 ">{{ $msg }}</p>
-            @endif
+            @else
             <div class="content-element row col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">   
                 @if(isset($posts[0]))
                 <div class="description">
@@ -71,6 +71,7 @@
                 <p class="info">Aún no hay publicaciones.</p>
                 @endif
             </div>
+             @endif
     </div>
 </div>
 @endsection

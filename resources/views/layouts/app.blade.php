@@ -86,7 +86,7 @@
                                         ></a>
                                 </section>
                                 <div class="text-center p-3" style="background-color: none;">
-                                    © 2020 Copyright:
+                                    © 2021 Copyright:
                                     <p class="text-white">Steven González, Greivin Carrillo, Johnny Chacón</p>
                                 </div>
                             </div>
