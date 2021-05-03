@@ -76,6 +76,22 @@
                 </div>
             </div> 
             @endif
+    </div><br>
+    @if(isset($posts[0]))
+    <div class="justify-content-center description col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-8">   
+        <p class ="info">Publicaciones de {{ $user->name }}</p>  
+        <div class= "col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
+            @foreach ($posts as $post)
+            <a href ="{{ route('posts.show', $post->id)}}" class ="info">{{ $post->tittle }}</a>
+            <p class ="blog-text light-blue"> {{ substr($post->text, 0, 100) . "..." }}</p>
+            <p class = "blog-text">{{ $post->created_at }}</p>
+            @endforeach
+        </div>
     </div>
+    @else
+    <div class="justify-content-center description col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-8">  
+        <p class="info">Este usuario no tiene publicaciones.</p>
+    </div>
+    @endif
 </div>
 @endsection

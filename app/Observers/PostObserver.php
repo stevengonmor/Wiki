@@ -25,7 +25,7 @@ class PostObserver {
     }
 
     /**
-     * Handle the Post "updated" event.
+     * Handle the Post "updating" event.
      *
      * @param  \App\Models\Post  $post
      * @return void

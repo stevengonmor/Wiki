@@ -13,7 +13,7 @@ use Illuminate\Http\Request;
 class PostController extends Controller {
 
     /**
-     * Display a listing of the resource.
+     * Create a new controller instance and defines what the user can do based on the permissions.
      *
      * @return \Illuminate\Http\Response
      */
@@ -27,6 +27,7 @@ class PostController extends Controller {
     /**
      * Display a listing of the resource.
      *
+     * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
     public function index(Request $request) {
@@ -102,7 +103,8 @@ class PostController extends Controller {
 
     /**
      * Display the specified resource.
-     *
+     * 
+     * @param  \Illuminate\Http\Request  $request
      * @param  \App\Post  $post
      * @return \Illuminate\Http\Response
      */
@@ -183,6 +185,12 @@ class PostController extends Controller {
                         ->with('success', 'Se borró la publicación.');
     }
 
+    /**
+     * Display a listing of the resource filtered by the auth user id.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
     public function user_posts(Request $request) {
         $msg = '';
         $one_user = true;

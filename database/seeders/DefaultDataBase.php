@@ -49,15 +49,31 @@ class DefaultDataBase extends Seeder {
         $roleAdmin->syncPermissions($permissionsAdmin);
         $roleEdit->syncPermissions($permissionsEditAuth);
         $roleAuth->syncPermissions($permissionsEditAuth);
-        //Create Admin user with default role
-        $user = User::create([
-                    'name' => 'Administrador',
+        //Create default users with default role
+        $user_admin = User::create([
+                    'name' => 'Carlos Montana',
                     'email' => 'admin@gmail.com',
-                    'about_me' => 'Soy el administrador',
+                    'about_me' => 'Soy un administrador.',
                     'password' => bcrypt('123'),
                     'profile_picture' => 'user.jpg'
         ]);
-        $user->assignRole([$roleAdmin->id]);
+        $user_admin->assignRole([$roleAdmin->id]);
+        $user_auth = User::create([
+                    'name' => 'Gerardo Rodriguez',
+                    'email' => 'auth@gmail.com',
+                    'about_me' => 'Soy un autenticado.',
+                    'password' => bcrypt('123'),
+                    'profile_picture' => 'user.jpg'
+        ]);
+        $user_auth->assignRole([$roleAuth->id]);
+        $user_edit = User::create([
+                    'name' => 'Karla Jiménez',
+                    'email' => 'edit@gmail.com',
+                    'about_me' => 'Soy una editora.',
+                    'password' => bcrypt('123'),
+                    'profile_picture' => 'user.jpg'
+        ]);
+        $user_edit->assignRole([$roleEdit->id]);
         //Insert Default Types for posts   
         \DB::table('types')->insert([
             [

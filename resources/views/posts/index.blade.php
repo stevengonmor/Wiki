@@ -19,7 +19,7 @@
                 @csrf
                 <div class="col-xs-12 col-sm-12 col-md-12">
                     <div class="form-group">                  
-                        <select class ="dropdown-text light-blue-input col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-3" name="type_id">
+                        <select class ="dropdown-text light-blue-input col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-5" name="type_id">
                             <option class= "info dark-blue" value="" selected disabled>Tipo</option>
                             <option class= "info dark-blue" value="">Todos</option>
                             @foreach($types as $value)
@@ -30,7 +30,7 @@
                 </div>
                 <div class="col-xs-12 col-sm-12 col-md-12">
                     <div class="form-group">                  
-                        <select class ="dropdown-text light-blue-input col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-3" name="category_id">
+                        <select class ="dropdown-text light-blue-input col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-5" name="category_id">
                             <option class= "info dark-blue" value="" selected disabled>Categoría</option>
                             <option class= "info dark-blue" value="0">Todos</option>
                             @foreach($categories as $value)
@@ -71,7 +71,7 @@
                 <p class="info">Aún no hay publicaciones.</p>
                 @endif
             </div>
-             @endif
+            @endif
     </div>
 </div>
 @endsection

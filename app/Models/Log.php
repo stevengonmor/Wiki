@@ -22,7 +22,7 @@ class Log extends Authenticatable {
     protected $fillable = [
         'user_id',
         'content_id',
-        'content_type', 
+        'content_type',
         'description',
         'action'
     ];

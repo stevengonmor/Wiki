@@ -10,8 +10,8 @@
     </div>
     @if(Auth::user()->hasRole('Autenticado') && Auth::user()->id != $post->user_id)
     <div class="description">
-            <p class="info">Los usuarios Autenticados solo pueden modificar sus propias publicaciones.</p>
-        </div>
+        <p class="info">Los usuarios Autenticados solo pueden modificar sus propias publicaciones.</p>
+    </div>
     @else
     <div class="description content-element col-xs-12 col-sm-12 col-md-12 col-lg-10 col-xl-8">
         @if ($errors->any())

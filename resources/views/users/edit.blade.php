@@ -1,6 +1,4 @@
 @extends('layouts.app')
-
-
 @section('content')
 <div class="container-fluid full-screen row"> 
     <div class="row">
@@ -12,11 +10,11 @@
     </div>
     @if(!Auth::user()->hasRole('Administrador') && Auth::user()->id != $user->id)
     <div class="description">
-            <p class="info">Los usuarios Autenticados y Editores solo pueden modificar su propia información.</p>
-        </div>
+        <p class="info">Los usuarios Autenticados y Editores solo pueden modificar su propia información.</p>
+    </div>
     @else
     <div class="description content-element col-xs-12 col-sm-12 col-md-12 col-lg-10 col-xl-5">
-      @if ($errors->any())
+        @if ($errors->any())
         <div class="content-element">
             <p class="info"> No se pudo editar el usuario. Corriga los siguientes errores:</p><br>
             <ul>
@@ -60,7 +58,7 @@
                 <input class="light-blue-input info" type="file" name="profile_picture">
                 <input type="hidden" name="old_profile_picture" value="{{ $user->profile_picture }}">
             </div><br>
-            <p class="text-white mb-4">La foto de perfil es opcional, puedes agregarla más tarde.</p><br>
+            <p class="text-white mb-4">La foto de perfil es opcional, puedes agregarla más tarde.</p>
             <div class="col-xs-12 col-sm-12 col-md-12 text-center">
                 <button type="submit" class="info submit-button">Actualizar</button>
             </div>
@@ -68,5 +66,4 @@
     </div>
     @endif
 </div>
-
 @endsection

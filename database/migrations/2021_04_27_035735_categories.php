@@ -26,4 +26,5 @@ class Categories extends Migration {
     public function down() {
         Schema::dropIfExists('categoties');
     }
+
 }

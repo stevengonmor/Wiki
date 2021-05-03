@@ -5,16 +5,16 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\User;
+use App\Models\Post;
 use Spatie\Permission\Models\Role;
 use DB;
 use Hash;
 use Illuminate\Support\Arr;
-use File;
 
 class UserController extends Controller {
 
     /**
-     * Display a listing of the resource.
+     * Create a new controller instance and defines what the user can do based on the permissions.
      *
      * @return \Illuminate\Http\Response
      */
@@ -28,6 +28,7 @@ class UserController extends Controller {
     /**
      * Display a listing of the resource.
      *
+     * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
     public function index(Request $request) {
@@ -93,10 +94,12 @@ class UserController extends Controller {
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param  \Illuminate\Http\Request  $request
+     * @param  \App\User  $user
      * @return \Illuminate\Http\Response
      */
     public function show(Request $request, User $user) {
+        $posts = Post::where('user_id', $user->id)->orderBy('id', 'desc')->paginate();
         $msg = '';
         if (!empty($request['email'])) {
             $user = User::where('email', $request['email'])->first();
@@ -104,13 +107,13 @@ class UserController extends Controller {
                 $msg = "El usuario no existe";
             }
         }
-        return view('users.show', compact('user', 'msg'));
+        return view('users.show', compact('user', 'msg', 'posts'));
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param  \App\User  $user
      * @return \Illuminate\Http\Response
      */
     public function edit(User $user) {
@@ -123,7 +126,7 @@ class UserController extends Controller {
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param  \App\User  $user
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, User $user) {
@@ -158,7 +161,7 @@ class UserController extends Controller {
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param  \App\User  $user
      * @return \Illuminate\Http\Response
      */
     public function destroy(User $user) {

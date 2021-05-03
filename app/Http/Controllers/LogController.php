@@ -6,12 +6,13 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\Log;
 use Spatie\Permission\Models\Permission;
+
 //use DB;
 
 class LogController extends Controller {
 
     /**
-     * Display a listing of the resource.
+     * Create a new controller instance and defines what the user can do based on the permissions.
      *
      * @return \Illuminate\Http\Response
      */

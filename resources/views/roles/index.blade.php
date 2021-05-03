@@ -2,9 +2,15 @@
 @section('content')
 <div class="contaimer-fluid full-screen">
     <div class="content-element col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-10">
+        <div class="pull-right">
+            @can('Crear Roles')
+            <a class="info submit-button" href="{{ route('roles.create') }}"> Crear un Nuevo Rol</a><br>
+            @endcan
+        </div>
         @if ($message = Session::get('success'))
         <p class="info">{{ $message }}</p>
         @endif
+        <br>
         <table class="content-element description table-bordered col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-4">
             <tr>
                 <th class="info">Nombre</th>
