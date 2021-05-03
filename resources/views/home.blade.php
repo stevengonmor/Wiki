@@ -45,6 +45,8 @@
             <br>
             @endforeach
         </div>
+        @else
+        <p class="info">Aún no hay publicaciones.</p>
         @endif
     </div>
 </div>
